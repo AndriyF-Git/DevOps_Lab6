@@ -14,3 +14,4 @@ class Item(ItemCreate):
 class User(BaseModel):
     id: int
     name: str
+

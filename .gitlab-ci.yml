@@ -5,11 +5,9 @@ stages:
   - test
   - build
 
-# Ставимо залежності перед кожною джобою
 before_script:
   - pip install -r requirements.txt
 
-# LINT — перевірка стилю коду
 lint:
   stage: lint
   script:
@@ -17,11 +15,6 @@ lint:
   only:
     - branches
 
-# TEST — юніт‑тести + coverage + JUnit репорт у артефактах
-# Провалюється, якщо coverage < 50%
-# JUnit відображається у CI/CD → Pipelines → Tests
-
-# ВАЖЛИВО: Вказуємо саме "app" як пакет для обчислення покриття
 
 test:
   stage: test
@@ -36,7 +29,6 @@ test:
   only:
     - branches
 
-# BUILD — збірка пакету (PEP 517) тільки на main
 build:
   stage: build
   script:

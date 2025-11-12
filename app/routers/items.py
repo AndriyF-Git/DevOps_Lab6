@@ -28,3 +28,4 @@ def get_item(item_id: int):
         if it.id == item_id:
             return it
     raise HTTPException(status_code=404, detail="Item not found")
+

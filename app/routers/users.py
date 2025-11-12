@@ -9,6 +9,7 @@ USERS: Dict[int, User] = {
     2: User(id=2, name="Bob"),
 }
 
+
 @router.get("/{user_id}", response_model=User)
 def get_user(user_id: int):
     user = USERS.get(user_id)

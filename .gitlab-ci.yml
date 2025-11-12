@@ -1,0 +1,45 @@
+image: python:3.12
+
+stages:
+  - lint
+  - test
+  - build
+
+# Ставимо залежності перед кожною джобою
+before_script:
+  - pip install -r requirements.txt
+
+# LINT — перевірка стилю коду
+lint:
+  stage: lint
+  script:
+    - flake8 .
+  only:
+    - branches
+
+# TEST — юніт‑тести + coverage + JUnit репорт у артефактах
+# Провалюється, якщо coverage < 50%
+# JUnit відображається у CI/CD → Pipelines → Tests
+
+# ВАЖЛИВО: Вказуємо саме "app" як пакет для обчислення покриття
+
+test:
+  stage: test
+  script:
+    - pytest --cov=app --cov-fail-under=50 --junitxml=report.xml
+  artifacts:
+    when: always
+    paths:
+      - report.xml
+    reports:
+      junit: report.xml
+  only:
+    - branches
+
+# BUILD — збірка пакету (PEP 517) тільки на main
+build:
+  stage: build
+  script:
+    - python -m build
+  only:
+    - main

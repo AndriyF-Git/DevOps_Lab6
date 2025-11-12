@@ -1,0 +1,17 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "fastapi-lab"
+version = "0.1.0"
+requires-python = ">=3.10"
+description = "FastAPI lab project with CI"
+readme = "README.md"
+authors = [{name = "Student"}]
+
+# Залежності для реального запуску застосунку (тести ставимо через requirements.txt у CI)
+dependencies = [
+  "fastapi",
+  "uvicorn[standard]"
+]

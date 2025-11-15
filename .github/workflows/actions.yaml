@@ -51,7 +51,6 @@ jobs:
       - name: Install deps
         run: |
           pip install -r requirements.txt
-          pip install -r requirements-dev.txt
 
       - name: Pytest (coverage ≥ 50%)
         run: |

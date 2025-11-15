@@ -10,3 +10,4 @@ __pycache__/
 .coverage
 htmlcov/
 report.xml
+.gitlab-ci.yml
